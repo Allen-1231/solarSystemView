@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>太陽系模型</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<div id="stage"><canvas id="scene" aria-label="可拖曳旋轉、雙指縮放的太陽系 3D 模型"></canvas></div>
+<div id="labels"></div>
+<div id="msg">載入天體貼圖…</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<header>
+  <div class="eyebrow" id="eyebrow">Solar System</div>
+  <h1 id="name">太陽系</h1>
+  <p id="sub">八大行星、矮行星冥王星與主要衛星</p>
+  <div id="info">
+    <dl class="facts" id="facts"></dl>
+    <p id="fun"></p>
+    <p id="credit">大小與距離皆經壓縮，軌道位置依真實軌道要素計算。貼圖來自 NASA、Solar System Scope、Planet Pixel Emporium 等。</p>
+  </div>
+</header>
+
+<footer>
+  <div class="dockbar">
+    <span id="hint">← → 切換天體　空白鍵 暫停　H 收合介面　F 全螢幕　雙擊空白處回全景</span>
+    <span id="dateMini" aria-hidden="true"></span>
+    <div class="dockbtns">
+      <button id="bFull" type="button" aria-pressed="false">全螢幕</button>
+      <button id="bDock" type="button" aria-expanded="true" aria-controls="dock">收合介面 ▾</button>
+    </div>
+  </div>
+  <div id="dock">
+    <nav class="chips" id="chips" aria-label="選擇天體"></nav>
+    <div class="dock-row">
+      <div class="controls" role="group" aria-label="顯示選項">
+        <button id="bOrbit" type="button" aria-pressed="true">軌道</button>
+        <button id="bLabel" type="button" aria-pressed="true">名稱</button>
+        <button id="bBelt" type="button" aria-pressed="true">小行星帶</button>
+        <button id="bInfo" type="button" aria-pressed="true">資訊</button>
+      </div>
+      <div class="time">
+        <span class="date" id="date">—</span>
+        <button id="bPlay" type="button" aria-pressed="false">暫停</button>
+        <button id="bNow" type="button" class="action">回到今天</button>
+        <label for="speed">時間流速</label>
+        <input id="speed" type="range" min="0" max="5" step="1" value="2">
+        <output id="speedOut" for="speed"></output>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script src="js/textures.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
